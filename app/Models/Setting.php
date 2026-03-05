@@ -27,6 +27,11 @@ class Setting extends Model
     {
         return Cache::rememberForever('settings.' . $groupKey, function() use($groupKey) {
             $settingGroup = SettingGroup::with('children.settings')->where('key', $groupKey)->first();
+
+            if (!$settingGroup || !$settingGroup->children) {
+                return [];
+            }
+
             $settings = $settingGroup->children->pluck('settings')->flatten();
             $values = [];
             foreach ($settings as $setting) {
@@ -34,7 +39,7 @@ class Setting extends Model
             }
             return $values;
         });
-        
+
     }
 
     public function settingGroup()

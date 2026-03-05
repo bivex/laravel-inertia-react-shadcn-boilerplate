@@ -1,5 +1,8 @@
 <?php
 
+// Suppress PHP 8.5 deprecation warnings for PDO constants in Laravel framework
+error_reporting(E_ALL ^ E_DEPRECATED);
+
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
