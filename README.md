@@ -113,7 +113,7 @@ A modern Content Management System (CMS) built with **Laravel**, **React**, **In
 ### 1. Create Project
 
 ```bash
-composer create-project coderomeos/laravel-inertia-react-shadcn-boilerplate
+composer create-project bivex/laravel-inertia-react-shadcn-boilerplate
 cd laravel-inertia-react-shadcn-boilerplate
 ```
 
