@@ -162,7 +162,7 @@ export default function MobileNavbar() {
     return (
         <nav className="md:hidden">
             <Sheet>
-                <SheetTrigger>
+                <SheetTrigger asChild>
                     <Button variant="ghost">
                         <MenuIcon size="20" />
                     </Button>
