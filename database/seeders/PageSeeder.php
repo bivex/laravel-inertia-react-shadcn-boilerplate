@@ -84,6 +84,42 @@ class PageSeeder extends Seeder
                 'meta_description' => 'Have a project in mind? Get in touch with our team to discuss how we can help bring your vision to life.',
             ]
         );
+
+        // Privacy Policy Page
+        Page::firstOrCreate(
+            ['slug' => 'privacy-policy'],
+            [
+                'user_id' => 1,
+                'title' => 'Privacy Policy',
+                'slug' => 'privacy-policy',
+                'body' => $this->getPrivacyPolicyContent(),
+                'puck_body' => [
+                    'content' => [],
+                    'root' => [],
+                ],
+                'status' => 1,
+                'meta_title' => 'Privacy Policy',
+                'meta_description' => 'Our privacy policy explains how we collect, use, and protect your personal information.',
+            ]
+        );
+
+        // Terms of Service Page
+        Page::firstOrCreate(
+            ['slug' => 'terms-of-service'],
+            [
+                'user_id' => 1,
+                'title' => 'Terms of Service',
+                'slug' => 'terms-of-service',
+                'body' => $this->getTermsOfServiceContent(),
+                'puck_body' => [
+                    'content' => [],
+                    'root' => [],
+                ],
+                'status' => 1,
+                'meta_title' => 'Terms of Service',
+                'meta_description' => 'Our terms of service outline the rules and regulations for using our platform.',
+            ]
+        );
     }
 
     private function getHomePageContent(): string
@@ -207,6 +243,75 @@ United States</p>
 
 <h2>Get a Free Quote</h2>
 <p>Ready to start your project? Contact us today for a free consultation and quote. We'll help you define your requirements and provide a detailed proposal.</p>
+HTML;
+    }
+
+    private function getPrivacyPolicyContent(): string
+    {
+        return <<<HTML
+<h1>Privacy Policy</h1>
+<p>Last updated: March 2025</p>
+
+<h2>Information We Collect</h2>
+<p>We collect information you provide directly to us, including when you create an account, make a purchase, or contact us for support.</p>
+
+<h2>How We Use Your Information</h2>
+<p>We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+
+<h2>Information Sharing</h2>
+<p>We do not sell, trade, or rent your personal information to third parties. We may share your information only as described in this policy or with your consent.</p>
+
+<h2>Data Security</h2>
+<p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+
+<h2>Your Rights</h2>
+<p>You have the right to access, correct, or delete your personal information. Contact us if you wish to exercise these rights.</p>
+
+<h2>Cookies</h2>
+<p>We use cookies and similar technologies to improve your experience, analyze usage, and assist in our marketing efforts.</p>
+
+<h2>Contact Us</h2>
+<p>If you have any questions about this Privacy Policy, please contact us at privacy@fastauth.com.</p>
+HTML;
+    }
+
+    private function getTermsOfServiceContent(): string
+    {
+        return <<<HTML
+<h1>Terms of Service</h1>
+<p>Last updated: March 2025</p>
+
+<h2>Acceptance of Terms</h2>
+<p>By accessing or using our services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+
+<h2>Changes to Terms</h2>
+<p>We reserve the right to modify these terms at any time. Your continued use of our services after any changes constitutes acceptance of the new terms.</p>
+
+<h2>Account Responsibilities</h2>
+<p>You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account.</p>
+
+<h2>Prohibited Activities</h2>
+<ul>
+<li>Using the service for any illegal purpose</li>
+<li>Attempting to gain unauthorized access to our systems</li>
+<li>Interfering with other users' enjoyment of the service</li>
+<li>Transmitting viruses or other harmful code</li>
+</ul>
+
+<h2>Intellectual Property</h2>
+<p>All content, features, and functionality of our services are owned by us and are protected by copyright, trademark, and other intellectual property laws.</p>
+
+<h2>Termination</h2>
+<p>We may terminate or suspend your account at any time for violation of these terms or for any other reason at our sole discretion.</p>
+
+<h2>Limitation of Liability</h2>
+<p>Our services are provided "as is" without warranties of any kind. We shall not be liable for any indirect, incidental, special, or consequential damages.</p>
+
+<h2>Governing Law</h2>
+<p>These terms shall be governed by the laws of the jurisdiction in which we are registered.</p>
+
+<h2>Contact Us</h2>
+<p>For questions about these Terms of Service, please contact us at legal@fastauth.com.</p>
 HTML;
     }
 }

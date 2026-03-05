@@ -33,14 +33,19 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $globalSettings = [
-            'general' => Setting::getValues('general')
+            'general' => Setting::getValues('general'),
+            'social' => [
+                'twitter' => Setting::getValues('general')['social_twitter'] ?? null,
+                'github' => Setting::getValues('general')['social_github'] ?? null,
+                'linkedin' => Setting::getValues('general')['social_linkedin'] ?? null,
+            ]
         ];
 
         return [
             ...parent::share($request),
             'appName' => config('app.name'),
             'globalSettings' => $globalSettings,
-            'primaryMenu' => Menu::getMenu('primary'),
+            'primaryMenu' => Menu::getMenu('main-navigation') ?? Menu::getMenu('primary'),
             'auth' => [
                 'user' => $request->user(),
                 'userRoles' => $request->user() ? $request->user()->roles->pluck('name') : [],

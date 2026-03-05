@@ -120,6 +120,17 @@ class SettingSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'setting_group_id' => 2,
+                'name' => 'Contact Email',
+                'description' => 'Contact email address',
+                'key' => 'contact_email',
+                'value' => 'info@fastauth.com',
+                'type' => 'text',
+                'order' => 5,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'setting_group_id' => 3,
                 'name' => 'Footer Text',
                 'description' => 'Footer text below the logo',
