@@ -36,6 +36,13 @@ class AppServiceProvider extends ServiceProvider
             //throw $th;
         }
 
+        // Enable compression for better performance
+        if (app()->environment('production')) {
+            \Illuminate\Support\Facades\Blade::directive('compress', function () {
+                return '<?php if (ob_get_level()) ob_end_clean(); ob_start("ob_gzhandler"); ?>';
+            });
+        }
+
         // Event::listen();
     }
 }
