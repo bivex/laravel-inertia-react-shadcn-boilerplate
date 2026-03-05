@@ -1,84 +1,183 @@
 # CMS Built with Laravel + React + Inertia.js + Shadcn
 
-This project is a modern Content Management System (CMS) built using Laravel for the backend, React for the frontend, Inertia.js for seamless single-page app functionality, and Shadcn for elegant, customizable UI components. Additionally, it integrates **[PUCK](https://github.com/measuredco/puck)**, a visual editor for React, allowing developers to easily create and customize components using WYSIWYG (What You See Is What You Get) functionality and a drag-and-drop interface.
-
-
-
-
-## UI Builder
-Create beatiful components with [PUCK - The visual editor for React](git@github.com:measuredco/puck.git). 
-This significantly simplifies the process of creating beautiful designs, offering a no-code solution for users.
-- WYSIWYG Editing: Ideal for non-technical users to easily manage content without writing code.
-- Drag-and-Drop: Intuitive interface for rearranging elements and building UIs quickly.
-- Component Reusability: Build modular, reusable components.
-- Integrated with React: Directly export and use the components in your app.
-
+A modern Content Management System (CMS) built with **Laravel**, **React**, **Inertia.js**, and **Shadcn UI**. Features **[PUCK](https://github.com/measuredco/puck)** visual editor for drag-and-drop page building with WYSIWYG functionality.
 
 ## Features
 
-- **Laravel**: Powerful PHP framework for robust backend and API development.
-- **React**: Modern, component-based JavaScript library for building user interfaces.
-- **Inertia.js**: Bridges Laravel and React for building SPAs without an API layer.
-- **Shadcn**: Elegant UI library for creating consistent, customizable components.
-- User authentication (login, register, password reset)
-- Role-based access control (Admin, Editor, etc.)
-- Manage content such as pages, posts, and media
-- CRUD functionality for posts, categories, tags, and more
-- Seamless SPA navigation with Inertia.js
-- Beautiful UI components with Shadcn for a clean user interface
+- 🎨 **Visual Page Builder** - PUCK editor with drag-and-drop components
+- 🔐 **Authentication** - Login, register, password reset with role-based access control
+- 📝 **Blog System** - Posts, categories, tags with rich text editing
+- 📄 **Static Pages** - Manage pages with SEO meta data
+- 🎭 **Role System** - Admin, Moderator, User roles with permissions
+- 🚀 **Modern Stack** - Laravel 12, React 18, Inertia.js, Shadcn UI, Tailwind CSS
+- ⚡ **Fast Development** - Hot module replacement with Vite
+- 📱 **Responsive** - Mobile-first design with Shadcn components
+
+## Tech Stack
+
+| Backend | Frontend | Tools |
+|---------|----------|-------|
+| Laravel 12.x | React 18.x | Inertia.js |
+| PHP 8.5+ | Tailwind CSS 3.x | Shadcn UI |
+| SQLite/MySQL | Vite 7.x | Puck Page Builder |
+| Bun | | |
 
 ## Requirements
 
-- PHP >= 8.2
-- Composer
-- Node.js >= 14.x
-- NPM
-- Laravel >= 11.x
-- MySQL or any database supported by Laravel
-- Inertia.js
-- React >= 18.x
-- tailwindcss >= 3.2.x
-- vite >= 5.x
+- **PHP** >= 8.5
+- **Composer** 2.x
+- **Bun** (or npm/node)
+- **Laravel** >= 12.x
+- **MySQL** or SQLite
 
 ## Installation
 
-Follow these steps to set up the project locally.
-
-### 1. Create project
+### 1. Create Project
 
 ```bash
 composer create-project coderomeos/laravel-inertia-react-shadcn-boilerplate
 cd laravel-inertia-react-shadcn-boilerplate
 ```
 
-### 2. Install packages
+### 2. Install Frontend Dependencies
+
 ```bash
-npm install
+bun install
 ```
 
-### 3. Set Up Environment Variables
-Configure your **database** and other environment variables in _.env_ file:
+### 3. Environment Setup
 
+Copy the example environment file:
 
-### 4. Run Migrations
+```bash
+cp .env.example .env
+```
+
+Configure your database and generate app key:
+
+```bash
+php artisan key:generate
+```
+
+### 4. Run Migrations & Seed
+
 ```bash
 php artisan migrate
+php artisan db:seed
 ```
 
-### 5. Run the development server
+### 5. Start Development Servers
+
+**Terminal 1 - Laravel:**
 ```bash
 php artisan serve
 ```
 
-In another terminal window, run:
+**Terminal 2 - Vite:**
 ```bash
-npm run dev
+bun run dev
 ```
-### 7. Build Assets
+
+Visit `http://127.0.0.1:8000`
+
+## Admin Access
+
+After running `php artisan db:seed`, you can access the admin panel:
+
+| Credential | Value |
+|------------|-------|
+| **Email** | `admin@admin.com` |
+| **Password** | `123456789` |
+| **URL** | `/dashboard` or `/admin/dashboard` |
+
+### Default Roles
+
+- **Super Admin** - Full system access
+- **Admin** - Admin panel access
+- **Moderator** - Content moderation
+- **User** - Basic access
+
+## Project Structure
+
+```
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/     # Laravel controllers
+│   │   ├── Middleware/       # Custom middleware
+│   │   └── Requests/         # Form requests
+│   ├── Models/              # Eloquent models
+│   └── Providers/           # Service providers
+├── database/
+│   ├── migrations/          # Database migrations
+│   └── seeders/             # Database seeders
+├── resources/
+│   ├── js/
+│   │   ├── Components/      # React components
+│   │   ├── Layouts/         # Page layouts
+│   │   └── Pages/           # Inertia pages
+│   └── css/                 # Stylesheets
+└── routes/
+    ├── web.php              # Web routes
+    └── api.php              # API routes
+```
+
+## Available Pages
+
+### Guest Pages
+- `/` - Homepage
+- `/blog` - Blog listing
+- `/blog/{slug}` - Single post
+- `/about-us` - About us
+- `/services` - Services
+- `/contact` - Contact
+- `/login` - Login
+- `/register` - Register
+
+### Admin Pages
+- `/dashboard` - Admin dashboard
+- `/admin/posts` - Manage posts
+- `/admin/categories` - Manage categories
+- `/admin/pages` - Manage pages
+- `/admin/menus` - Manage navigation
+- `/admin/settings` - Site settings
+
+## Building for Production
+
 ```bash
-npm run build
+bun run build
 ```
+
+Set environment to production:
+```bash
+APP_ENV=production
+APP_DEBUG=false
+```
+
+## Performance
+
+The application uses code splitting and lazy loading:
+
+- **Guest pages** load ~100KB (gzipped) - minimal JS
+- **Admin pages** load ~630KB (gzipped) - includes editor libraries
+- **Editor chunk** (264KB gzipped) - only loads for admin users
+
+## Security
+
+- CSRF protection on all forms
+- SQL injection prevention via Eloquent ORM
+- XSS protection with escaped output
+- Password hashing with bcrypt
+- Role-based access control
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Credits
+
+- [Laravel](https://laravel.com)
+- [React](https://react.dev)
+- [Inertia.js](https://inertiajs.com)
+- [Shadcn UI](https://ui.shadcn.com)
+- [Puck](https://github.com/measuredco/puck)
+- [Tailwind CSS](https://tailwindcss.com)
